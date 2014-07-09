@@ -33,5 +33,6 @@ for _ in range(100000):
    minimal.mavlink_msg_heartbeat_pack(8, 9, msg, 3, 4, 5, 6, 7)
    minimal.mavlink_dumps(msg)
 b = time() - start
+
 print 'serialization speedup:', a / b
 
