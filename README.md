@@ -1,5 +1,5 @@
 
-SWIG Python MAVLINK Implementation
+SWIG Python MAVLink Implementation
 ----------------------------------
 
 usage:
