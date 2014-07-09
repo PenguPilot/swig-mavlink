@@ -1,5 +1,5 @@
 
-# encode message using Python/C and decode it using plain Python interface
+# a simple performance comparison
 
 from time import time
 import os
