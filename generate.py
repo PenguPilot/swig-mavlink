@@ -49,7 +49,7 @@ for module in modules:
    str = 'MODULE=%s\n' % module
    str += 'all: $(MODULE).i\n'
    str += '\tswig -python $(MODULE).i\n'
-   str += '\tgcc -shared -o _$(MODULE).so -fPIC `pkg-config python --cflags` $(MODULE)_wrap.c\n'
+   str += '\tgcc -O3 -shared -o _$(MODULE).so -fPIC `pkg-config python --cflags` $(MODULE)_wrap.c\n'
    str += 'clean:\n'
    str += '\trm -f *.o *.pyc *.so *.c *.py\n'
    file = open(module + '/Makefile', 'w')
