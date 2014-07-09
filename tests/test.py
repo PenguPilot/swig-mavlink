@@ -20,7 +20,7 @@ from mavlinkv10 import MAVLink
 ml = MAVLink(None)
 start = time()
 for _ in range(100000):
-   ml.heartbeat_encode(0, 1, 1, 2, 1)
+   ml.heartbeat_encode(0, 1, 1, 2, 1).get_msgbuf()
 a = time() - start
 
 
