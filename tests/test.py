@@ -14,25 +14,25 @@ def import_path(fullpath):
     del sys.path[-1]
     return module
 
-minimal = import_path('../minimal/minimal.py')
 
-
+# pymavlink serializer:
 from mavlinkv10 import MAVLink
-
 ml = MAVLink(None)
-
-
 start = time()
 for _ in range(100000):
    ml.heartbeat_encode(0, 1, 1, 2, 1)
 a = time() - start
 
+
+# SWIG serializer:
+minimal = import_path('../minimal/minimal.py')
 start = time()
 msg = minimal.mavlink_message_t()
 for _ in range(100000):
    minimal.mavlink_msg_heartbeat_pack(8, 9, msg, 3, 4, 5, 6, 7)
    minimal.mavlink_dumps(msg)
 b = time() - start
+
 
 print 'serialization speedup:', a / b
 
