@@ -17,6 +17,13 @@ cd tests
 python test.py
 ```
 
+Performance Gain compared to plain Python
+-----------------------------------------
+
+Machine: Intel(R) Core(TM) i5-2320 CPU
+Speedup: ~12.0
+
+
 Required Packages
 -----------------
 

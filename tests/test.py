@@ -1,7 +1,7 @@
 
 # encode message using Python/C and decode it using plain Python interface
 
-
+from time import time
 import os
 import sys
 
@@ -21,12 +21,17 @@ from mavlinkv10 import MAVLink
 
 ml = MAVLink(None)
 
-msg = minimal.mavlink_message_t()
-packed_size = minimal.mavlink_msg_heartbeat_pack(8, 9, msg, 3, 4, 5, 6, 7)
 
-s = minimal.mavlink_dumps(msg)
-for c in s:
-   m = ml.parse_char(c)
-   if m:
-      print m
+start = time()
+for _ in range(100000):
+   ml.heartbeat_encode(0, 1, 1, 2, 1)
+a = time() - start
+
+start = time()
+msg = minimal.mavlink_message_t()
+for _ in range(100000):
+   minimal.mavlink_msg_heartbeat_pack(8, 9, msg, 3, 4, 5, 6, 7)
+   minimal.mavlink_dumps(msg)
+b = time() - start
+print 'serialization speedup:', a / b
 
